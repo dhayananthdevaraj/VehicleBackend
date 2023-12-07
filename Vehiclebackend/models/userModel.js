@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema({
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
       },
       message: props => `${props.value} is not a valid email address!`,
-    },
+    },  
   },
   role: {
     type: String,

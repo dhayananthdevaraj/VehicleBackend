@@ -192,8 +192,8 @@ describe('getAllProducts', () => {
     const productsData = [
       {
         _id: 'product1',
-        product: 'Product 1',
-        price: 29.99,
+        vehicleName:'Product 1',
+        rentalPrice: 29.99,
         category: 'Clothing',
         description: 'Product 1 description',
         imageurl: 'https://example.com/product1-image.jpg',
@@ -203,8 +203,8 @@ describe('getAllProducts', () => {
       },
       {
         _id: 'product2',
-        product: 'Product 2',
-        price: 39.99,
+        vehicleName:'Product 2',
+        rentalPrice: 39.99,
         category: 'Electronics',
         description: 'Product 2 description',
         imageurl: 'https://example.com/product2-image.jpg',
@@ -241,8 +241,8 @@ describe('getAllProducts', () => {
     const productsData = [
       {
         _id: 'product1',
-        product: 'Product 1',
-        price: 29.99,
+        vehicleName:'Product 1',
+        rentalPrice: 29.99,
         category: 'Clothing',
         description: 'Product 1 description',
         imageurl: 'https://example.com/product1-image.jpg',
@@ -252,8 +252,8 @@ describe('getAllProducts', () => {
       },
       {
         _id: 'product2',
-        product: 'Product 2',
-        price: 39.99,
+        vehicleName:'Product 2',
+        rentalPrice: 39.99,
         category: 'Electronics',
         description: 'Product 2 description',
         imageurl: 'https://example.com/product2-image.jpg',
@@ -283,8 +283,8 @@ describe('getAllProducts', () => {
     await getAllProducts(req, res);
 
     // Assertions
-    expect(Product.find).toHaveBeenCalledWith({ product: new RegExp('', 'i') });
-    expect(productQuery.sort).toHaveBeenCalledWith({ price: 1 });
+    expect(Product.find).toHaveBeenCalledWith({ vehicleName:new RegExp('', 'i') });
+    expect(productQuery.sort).toHaveBeenCalledWith({ rentalPrice: 1 });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(productsData);
   });
@@ -313,8 +313,8 @@ describe('getAllProducts', () => {
     await getAllProducts(req, res);
 
     // Assertions
-    expect(Product.find).toHaveBeenCalledWith({ product: new RegExp('', 'i') });
-    expect(productQuery.sort).toHaveBeenCalledWith({ price: 1 });
+    expect(Product.find).toHaveBeenCalledWith({ vehicleName:new RegExp('', 'i') });
+    expect(productQuery.sort).toHaveBeenCalledWith({ rentalPrice: 1 });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ message: 'Database error' });
   });
@@ -326,8 +326,8 @@ describe('getProductByUserId', () => {
     const productsData = [
       {
         _id: 'product1',
-        product: 'Product 1',
-        price: 29.99,
+        vehicleName:'Product 1',
+        rentalPrice: 29.99,
         category: 'Clothing',
         description: 'Product 1 description',
         imageurl: 'https://example.com/product1-image.jpg',
@@ -337,8 +337,8 @@ describe('getProductByUserId', () => {
       },
       {
         _id: 'product2',
-        product: 'Product 2',
-        price: 39.99,
+        vehicleName:'Product 2',
+        rentalPrice: 39.99,
         category: 'Electronics',
         description: 'Product 2 description',
         imageurl: 'https://example.com/product2-image.jpg',
@@ -367,8 +367,8 @@ describe('getProductByUserId', () => {
     await getProductByUserId(req, res);
 
     // Assertions
-    expect(Product.find).toHaveBeenCalledWith({ userId: 'user123', product: new RegExp('', 'i') });
-    expect(productQuery.sort).toHaveBeenCalledWith({ price: 1 });
+    expect(Product.find).toHaveBeenCalledWith({ userId: 'user123', vehicleName:new RegExp('', 'i') });
+    expect(productQuery.sort).toHaveBeenCalledWith({ rentalPrice: 1 });
     expect(res.status).toHaveBeenCalledWith(200);
     expect(res.json).toHaveBeenCalledWith(productsData);
   });
@@ -396,8 +396,8 @@ describe('getProductByUserId', () => {
     await getProductByUserId(req, res);
 
     // Assertions
-    expect(Product.find).toHaveBeenCalledWith({ userId: 'user123', product: new RegExp('', 'i') });
-    expect(productQuery.sort).toHaveBeenCalledWith({ price: 1 });
+    expect(Product.find).toHaveBeenCalledWith({ userId: 'user123', vehicleName:new RegExp('', 'i') });
+    expect(productQuery.sort).toHaveBeenCalledWith({ rentalPrice: 1 });
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({ message: 'Database error' });
   });
@@ -417,7 +417,7 @@ describe('deleteProduct', () => {
     // Mock the Product.findByIdAndDelete method to resolve with the deleted product data
     Product.findByIdAndDelete = jest.fn().mockResolvedValue({
       _id: productId,
-      product: 'Deleted Product',
+      vehicleName:'Deleted Product',
       // Include other fields as needed
     });
 
@@ -427,7 +427,7 @@ describe('deleteProduct', () => {
     // Assertions
     expect(Product.findByIdAndDelete).toHaveBeenCalledWith(productId);
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Product deleted successfully' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Vehicle deleted successfully' });
   });
 
   test('deleteproduct_should_handle_not_finding_a_product_and_respond_with_a_404_status_code', async () => {
@@ -447,7 +447,7 @@ describe('deleteProduct', () => {
     // Assertions
     expect(Product.findByIdAndDelete).toHaveBeenCalledWith('nonExistentProduct');
     expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any product' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any vehicle' });
   });
 
   test('deleteproduct_should_handle_errors_and_respond_with_a_500_status_code_and_an_error_message', async () => {
@@ -479,8 +479,8 @@ describe('updateProduct', () => {
     // Sample product ID and updated product data
     const productId = 'product123';
     const updatedProductData = {
-      product: 'Updated Product',
-      price: 39.99,
+      vehicleName:'Updated Product',
+      rentalPrice: 39.99,
       category: 'Electronics',
       description: 'Updated product description',
       imageurl: 'https://example.com/updated-product-image.jpg',
@@ -505,7 +505,7 @@ describe('updateProduct', () => {
     // Assertions
     expect(Product.findByIdAndUpdate).toHaveBeenCalledWith(productId, updatedProductData, { new: true });
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Product updated successfully' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Vehicle updated successfully' });
   });
 
   test('updateproduct_should_handle_not_finding_a_product_and_respond_with_a_404_status_code', async () => {
@@ -525,7 +525,7 @@ describe('updateProduct', () => {
     // Assertions
     expect(Product.findByIdAndUpdate).toHaveBeenCalledWith('nonExistentProduct', {}, { new: true });
     expect(res.status).toHaveBeenCalledWith(404);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any product' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any vehicle' });
   });
 
   test('updateproduct_should_handle_errors_and_respond_with_a_500_status_code_and_an_error_message', async () => {
@@ -557,8 +557,8 @@ describe('getProductById', () => {
     const productId = 'product123';
     const productData = {
       _id: productId,
-      product: 'Sample Product',
-      price: 50.99,
+      vehicleName:'Sample Product',
+      rentalPrice: 50.99,
       category: 'Electronics',
       description: 'Sample product description',
       imageurl: 'https://example.com/sample-image.jpg',
@@ -589,8 +589,8 @@ describe('getProductById', () => {
     const productId = 'product123';
     const productData = {
       _id: productId,
-      product: 'Sample Product',
-      price: 50.99,
+      vehicleName:'Sample Product',
+      rentalPrice: 50.99,
       category: 'Electronics',
       description: 'Sample product description',
       imageurl: 'https://example.com/sample-image.jpg',
@@ -634,7 +634,7 @@ describe('getProductById', () => {
     // Assertions
     expect(Product.findById).toHaveBeenCalledWith('nonExistentProduct');
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any product' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Cannot find any vehicle' });
   });
 
   test('getproductbyid_should_handle_errors_and_respond_with_a_500_status_code_and_an_error_message', async () => {
@@ -666,8 +666,8 @@ describe('addProduct', () => {
   test('addproduct_should_add_a_product_and_respond_with_a_200_status_code_and_success_message', async () => {
     // Sample product data to be added
     const productToAdd = {
-      product: 'New Product',
-      price: 29.99,
+      vehicleName:'New Product',
+      rentalPrice: 29.99,
       category: 'Clothing',
       description: 'New product description',
       imageurl: 'https://example.com/new-product-image.jpg',
@@ -692,7 +692,7 @@ describe('addProduct', () => {
     // Assertions
     expect(Product.create).toHaveBeenCalledWith(productToAdd);
     expect(res.status).toHaveBeenCalledWith(200);
-    expect(res.json).toHaveBeenCalledWith({ message: 'Product added successfully' });
+    expect(res.json).toHaveBeenCalledWith({ message: 'Vehicle added successfully' });
   });
 
   test('addproduct_should_handle_errors_and_respond_with_a_500_status_code_and_an_error_message', async () => {
@@ -813,8 +813,8 @@ describe('User Model Schema Validation', () => {
 describe("schema validation for product",()=>{
   test('should_validate_a_product_with_a_negative_price', async () => {
     const invalidProductData = {
-      product: 'Sample Product',
-      price: -10,
+      vehicleName:'Sample Product',
+      rentalPrice: -10,
       description: 'This is a sample product description.',
       imageurl: 'https://example.com/sample-image.jpg',
       category: 'Electronics',
@@ -830,8 +830,8 @@ describe("schema validation for product",()=>{
   });
   test('should_validate_a_product_with_a_negative_quantity', async () => {
     const invalidProductData = {
-      product: 'Sample Product',
-      price: 50.99,
+      vehicleName:'Sample Product',
+      rentalPrice: 50.99,
       description: 'This is a sample product description.',
       imageurl: 'https://example.com/sample-image.jpg',
       category: 'Electronics',
@@ -847,8 +847,8 @@ describe("schema validation for product",()=>{
   });
   test('should_validate_a_product_with_a_description_longer_than_the_maximum_length', async () => {
     const invalidProductData = {
-      product: 'Sample Product',
-      price: 50.99,
+      vehicleName:'Sample Product',
+      rentalPrice: 50.99,
       description: 'This is a sample product description. '.repeat(20), // Create a description longer than the maximum length
       imageurl: 'https://example.com/sample-image.jpg',
       category: 'Electronics',

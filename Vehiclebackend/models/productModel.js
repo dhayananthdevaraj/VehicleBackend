@@ -1,25 +1,24 @@
 const mongoose = require('mongoose');
 
 const productSchema = new mongoose.Schema({
-  product: {
+  vehicleName: {
     type: String,
     required: true,
     trim: true, // Remove leading and trailing whitespaces
   },
-  price: {
+  rentalPrice: {
     type: Number,
     required: true,
-    min: 0, // Minimum price should be 0
+    min: 0, // Minimum rentalPrice should be 0
   },
   description: {
     type: String,
     required: true,
     maxlength: 500, // Maximum description length
   },
-  imageurl: {
+  imageUrl: {
     type: String,
     required: true,
-  
   },
   category: {
     type: String,
